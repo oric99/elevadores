@@ -30,15 +30,15 @@ def eliminarPiso(piso, arreglo):
     arreglo.remove(piso)
 
 #recibe un arreglo y valida si el usuario va a ingresar más pisos o no
-def ingresarPiso(arreglo):
+def ingresarPiso(ascensor, arreglo):
     print(arreglo)
     abierto = True
     while abierto:
         print('pedir piso? s/n')
         if input() =='s':
             #agrega el input tipo int al arreglo
-            a =
-            arreglo.append(int(input()))
+            a = int(input())
+            arreglo.append(a)
         else:
             #cierra el ascensor
             abierto = False
@@ -63,7 +63,7 @@ def mayoria(piso, arreglo):
 #metodo para mover el ascensor, pide los dos arreglos: el de pisos totales y el de pisos pedidos
 def moverAscensor(pisoActual, ascensor, pisosPedidos):
     if len(pisosPedidos) == 0:
-        ingresarPiso(pisosPedidos)
+        ingresarPiso(ascensor, pisosPedidos)
     while len(pisosPedidos) != 0:
         time.sleep(0.5)
         print('piso actual: ', ascensor[pisoActual-1])
@@ -71,7 +71,7 @@ def moverAscensor(pisoActual, ascensor, pisosPedidos):
         while pisoEnArreglo(pisoActual, pisosPedidos):
             eliminarPiso(ascensor[pisoActual-1], pisosPedidos)
             print('elevador se detiene en ', ascensor[pisoActual-1])
-            ingresarPiso(pisosPedidos)
+            ingresarPiso(ascensor, pisosPedidos)
             break
         if ascensor[pisoActual-1] < pisoPedido:
             print('subiendo elevador')
