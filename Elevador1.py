@@ -2,14 +2,12 @@
 import time
 ##Se definen los arreglos para el numero de pisos del edificio
 ## se define el arreglo de pisos que se van a ejecutar inicialmente
-pisos1 = []
-pisos2 = []
+pisos = []
 arregloDePisos = []
 
 def llenarPisos():
     for n in range(1, 30, 1):
-        pisos1.append(n)
-        pisos2.append(n)
+        pisos.append(n)
 
 #compruebo si el piso actual está en el arreglo de pisos
 def pisoEnArreglo(piso, arreglo):
@@ -39,19 +37,33 @@ def ingresarPiso(arreglo):
         print('pedir piso? s/n')
         if input() =='s':
             #agrega el input tipo int al arreglo
+            a =
             arreglo.append(int(input()))
         else:
             #cierra el ascensor
             abierto = False
 
-
+def mayoria(piso, arreglo):
+    cont = 0
+    total = 0
+    promedio = 0
+    for _ in arreglo:
+        total += arreglo[cont]
+        cont += 1
+    promedio = int(total)/len(arreglo)
+    print(promedio)
+    if piso < promedio:
+        print('baje')
+        return True
+    else:
+        print('suba')
+        return False
     
 
 #metodo para mover el ascensor, pide los dos arreglos: el de pisos totales y el de pisos pedidos
 def moverAscensor(pisoActual, ascensor, pisosPedidos):
     if len(pisosPedidos) == 0:
         ingresarPiso(pisosPedidos)
-        
     while len(pisosPedidos) != 0:
         time.sleep(0.5)
         print('piso actual: ', ascensor[pisoActual-1])
@@ -67,7 +79,7 @@ def moverAscensor(pisoActual, ascensor, pisosPedidos):
         if ascensor[pisoActual-1] > pisoPedido:
             print('bajando el asensor')
             pisoActual -= 1
-            
+
 
 llenarPisos()
 moverAscensor(4, pisos, arregloDePisos)
